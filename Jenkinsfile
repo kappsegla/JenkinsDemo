@@ -20,6 +20,12 @@ pipeline{
         stage('Deploy'){
             steps {
                 sh 'mvn package'
+                sh 'docker --version'
+            }
+            post {
+                success {
+                    archiveArtifacts 'target/*.jar'
+                }
             }
         }
     }
